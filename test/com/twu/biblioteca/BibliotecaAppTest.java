@@ -15,7 +15,7 @@ public class BibliotecaAppTest {
         PrintStream printStream = mock(PrintStream.class);
         BibliotecaApp app = new BibliotecaApp(printStream);
         app.printGreeting();
-        verify(printStream).println("Welcome to Biblioteca!");
+        verify(printStream).println("Welcome to Biblioteca!\n");
     }
 
     @Test
@@ -26,4 +26,5 @@ public class BibliotecaAppTest {
         app.printOptions();
 
         }
+
 }

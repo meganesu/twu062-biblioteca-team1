@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.Objects;
+
 public class Book {
 
     private String author;
@@ -28,4 +30,15 @@ public class Book {
     public String toString() {
         return "Title: " + title + ", Author: " + author + ", Year: " + year;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return book.author.equals(author) &&
+                book.title.equals(title) &&
+                book.year.equals(year);
+    }
+
 }
