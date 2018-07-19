@@ -1,0 +1,19 @@
+BibliotecaApp
+- Main Wrapper
+
+Menu
+- Holds the loop
+- Has a list of Options (logic)
+- Has a UI (front end)
+- Has a Library (database)
+
+User Interface
+- When SOME CLASS asks for user input, reads user input
+- Needs to speak Menu language
+
+Library
+- Hold all the books / media, returns the list, etc.
+
+Options
+- Execute actions
+- Subclasses that represent each option
