@@ -5,12 +5,13 @@ import java.io.*;
 public class BibliotecaApp {
     private PrintStream printStream;
 
-    public BibliotecaApp(PrintStream ps) {
-        printStream = ps;
+    public static void main(String[] args) {
+        BibliotecaApp app = new BibliotecaApp(System.out);
+        app.printGreeting();
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
+    public BibliotecaApp(PrintStream ps) {
+        printStream = ps;
     }
 
     public void printGreeting() {
