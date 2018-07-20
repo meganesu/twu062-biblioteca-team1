@@ -6,9 +6,10 @@ import java.util.Arrays;
 
 public class BibliotecaApp {
     private PrintStream printStream;
+    private Menu menu;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BibliotecaApp app = new BibliotecaApp(System.out);
         Book[] bookList = {
                 new Book(0,"Catch 22", "Joseph Heller", "1967"),
@@ -23,6 +24,11 @@ public class BibliotecaApp {
 
         app.printGreeting();
         app.printOptions();
+
+        Menu menu = new Menu(lib, new UserInterface(new PrintStream(System.out),
+                new BufferedReader(new InputStreamReader(System.in))));
+
+        menu.doRequest();
     }
 
 
