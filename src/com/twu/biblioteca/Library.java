@@ -8,9 +8,8 @@ public class Library {
     ArrayList<Book> bookList;
     PrintStream printStream;
 
-    public Library(ArrayList<Book> bookList, PrintStream printStream) {
+    public Library(ArrayList<Book> bookList) {
         this.bookList = bookList;
-        this.printStream = printStream;
 
     }
 
@@ -20,8 +19,12 @@ public class Library {
         }
     }
 
-    public ArrayList<Book> getBookList() {
+    public String getBookListString() {
         // don't want to allow other parts of program to edit bookList
-        return (ArrayList<Book>) bookList.clone();
+        StringBuilder sb = new StringBuilder();
+        for (Book book : bookList) {
+            sb.append(book.toString() + "\n");
+        }
+        return sb.toString();
     }
 }

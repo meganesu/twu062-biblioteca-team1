@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,7 +19,7 @@ public class BibliotecaApp {
                 new Book("Hamlet","William Shakespeare","1599")
         };
 
-        Library lib = new Library(new ArrayList<Book>(Arrays.asList(bookList)), System.out);
+        Library lib = new Library(new ArrayList<Book>(Arrays.asList(bookList)));
 
         app.printGreeting();
         app.printOptions();

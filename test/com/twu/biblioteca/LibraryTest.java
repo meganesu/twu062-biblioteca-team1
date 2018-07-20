@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -13,14 +12,19 @@ import static org.mockito.Mockito.verify;
 
 public class LibraryTest {
 
+    static ArrayList<Book> testBookList = new ArrayList<Book>(Arrays.asList(new Book[] {
+            new Book("Catch 22","Joseph Heller","1967"),
+            new Book("ABC", "Nygel", "2018")
+    }));
+
     @Test
     public void shouldReturnListOfBooks() {
         PrintStream printStream = mock(PrintStream.class);
         ArrayList<Book> bookList = new ArrayList<Book>(Arrays.asList(new Book[] {
                 new Book("Catch 22","Joseph Heller","1967")
         }));
-        Library lib = new Library(new ArrayList<Book>(bookList), printStream);
+        Library lib = new Library(new ArrayList<Book>(bookList));
 
-        assertEquals(bookList,lib.getBookList());
+        assertEquals(bookList.get(0).toString() + "\n",lib.getBookListString());
     }
 }
