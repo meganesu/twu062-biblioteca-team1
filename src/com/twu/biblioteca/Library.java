@@ -19,4 +19,9 @@ public class Library {
             printStream.println(book);
         }
     }
+
+    public ArrayList<Book> getBookList() {
+        // don't want to allow other parts of program to edit bookList
+        return (ArrayList<Book>) bookList.clone();
+    }
 }
