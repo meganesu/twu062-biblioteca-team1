@@ -5,11 +5,23 @@ public class Book {
     private String author;
     private String title;
     private String year;
+    private boolean isCheckedout;
+    private int id;
 
-    public Book(String title, String author, String year) {
+    public Book(int id, String title, String author, String year) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
+        isCheckedout = false;
+    }
+
+    public boolean isCheckedout() {
+        return isCheckedout;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -26,7 +38,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Title: " + title + ", Author: " + author + ", Year: " + year;
+        return "ID: " + id + ", Title: " + title + ", Author: " + author + ", Year: " + year;
     }
 
 
@@ -40,4 +52,7 @@ public class Book {
                 book.year.equals(year);
     }
 
+    public void checkout() {
+        isCheckedout = true;
+    }
 }

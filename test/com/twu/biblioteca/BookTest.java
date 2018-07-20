@@ -12,7 +12,7 @@ public class BookTest {
         String author = "Joseph Heller";
         String year = "1967";
 
-        assertEquals(title, new Book(title, author, year).getTitle());
+        assertEquals(title, new Book(0,title, author, year).getTitle());
     }
 
     @Test
@@ -21,7 +21,7 @@ public class BookTest {
         String author = "Joseph Heller";
         String year = "1967";
 
-        assertEquals(title, new Book(title, author, year).getTitle());
+        assertEquals(title, new Book(0,title, author, year).getTitle());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class BookTest {
         String author = "Joseph Heller";
         String year = "1967";
 
-        assertEquals(author, new Book(title, author, year).getAuthor());
+        assertEquals(author, new Book(0,title, author, year).getAuthor());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class BookTest {
         String author = "Joseph Heller";
         String year = "1967";
 
-        assertEquals(year, new Book(title, author, year).getYear());
+        assertEquals(year, new Book(0,title, author, year).getYear());
     }
 
     @Test
@@ -48,8 +48,8 @@ public class BookTest {
         String author = "Joseph Heller";
         String year = "1967";
 
-        String expected = "Title: " + title + ", Author: " + author + ", Year: " + year;
+        String expected = "ID: 0, Title: " + title + ", Author: " + author + ", Year: " + year;
 
-        assertEquals(expected, new Book(title, author, year).toString());
+        assertEquals(expected, new Book(0,title, author, year).toString());
     }
 }
