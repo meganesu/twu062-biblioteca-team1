@@ -28,7 +28,7 @@ public class MenuTest {
         ui = new UserInterface(printStream, input);
         lib = new Library(LibraryTest.testBookList);
 
-        menu = new Menu(lib, ui);
+        menu = new Menu(printStream,input,LibraryTest.testBookList);
     }
 
     @Test
@@ -52,5 +52,33 @@ public class MenuTest {
         menu.doRequest();
 
         verify(printStream).println(lib.getBookListString());
+    }
+
+
+    @Test
+    public void shouldPrintGreeting() {
+        PrintStream printStream = mock(PrintStream.class);
+        BufferedReader bufferedReader = mock(BufferedReader.class);
+
+        Menu menu = new Menu(printStream,bufferedReader,LibraryTest.testBookList);
+        menu.printGreeting();
+        verify(printStream).println("Welcome to Biblioteca!\n");
+    }
+
+    @Test
+    public void showListOfOptions () {
+
+        PrintStream printStream = mock(PrintStream.class);
+        BufferedReader bufferedReader = mock(BufferedReader.class);
+
+        Menu menu = new Menu(printStream,bufferedReader,LibraryTest.testBookList);
+        menu.printOptions();
+        verify(printStream).println("1) List Books\n2) Check Out Book\n3) Return Book\n4) Quit\n");
+
+
+
+
+
+
     }
 }
