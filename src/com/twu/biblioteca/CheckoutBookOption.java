@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.io.IOException;
+
 public class CheckoutBookOption extends Option {
 
     public CheckoutBookOption(Library lib, UserInterface ui) {
@@ -9,7 +11,16 @@ public class CheckoutBookOption extends Option {
 
     @Override
     public boolean execute() {
-        ui.printMessage("Thank you! Enjoy the book");
+
+        String userInput = null;
+        ui.printMessage("Enter the ID of the book you wish to check out.");
+        try {
+            userInput = ui.getUserInput();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        lib.checkout(Integer.parseInt(userInput));
+        ui.printMessage("Enjoy your book!");
         return true;
     }
 
