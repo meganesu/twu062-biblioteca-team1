@@ -7,10 +7,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class MenuTest {
 
@@ -32,16 +31,19 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldGetBookListWhenGivenInput1() {
+    public void shouldReturnTrueAndPrintBookListWhenGivenInput1() {
 
-        assertEquals(lib.getBookListString(), menu.executeInput(Menu.MenuCode.BookList));
-
+        boolean response = menu.executeInput(Menu.MenuCode.BookList);
+        verify(printStream).println(lib.getBookListString());
+        assertTrue(response);
     }
 
     @Test
-    public void shouldReturnIfBookWasCheckedOutSuccessfully()
+    public void shouldReturnTrueAndPrintMessageIfBookWasCheckedOutSuccessfully()
     {
-        assertEquals("Thank you! Enjoy the book", menu.executeInput(Menu.MenuCode.Checkout));
+        boolean response = menu.executeInput(Menu.MenuCode.Checkout);
+        verify(printStream).println("Thank you! Enjoy the book");
+        assertTrue(response);
     }
 
     @Test
@@ -75,9 +77,21 @@ public class MenuTest {
         menu.printOptions();
         verify(printStream).println("1) List Books\n2) Check Out Book\n3) Return Book\n4) Quit\n");
 
+    }
 
+    @Test
+    public void shouldAcceptMultipleInputsUntilQuitAndNoneAfter() throws IOException {
 
+        when(input.readLine()).thenReturn("1").thenReturn("1").thenReturn("4").thenReturn("1");
 
+        Library mockLib = mock(Library.class);
+        Menu mockMenu = new Menu(ui, mockLib);
+
+        mockMenu.launch();
+
+        verify(mockLib, times(2)).getBookListString();
+
+        verify(printStream).println("Goodbye!");
 
 
     }

@@ -2,10 +2,8 @@ package com.twu.biblioteca;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Menu {
 
@@ -16,6 +14,7 @@ public class Menu {
     public enum MenuCode {
         BookList,
         Checkout,
+        Quit,
         Invalid
     }
 
@@ -28,6 +27,10 @@ public class Menu {
         this.ui = new UserInterface(printStream,
                 bufferedReader);
 
+        addMenuOptions();
+    }
+
+    private void addMenuOptions() {
         menuOptions = new ArrayList<String>();
         this.menuOptions.add("List Books");
         this.menuOptions.add("Check Out Book");
@@ -35,11 +38,21 @@ public class Menu {
         this.menuOptions.add("Quit");
     }
 
+    public Menu(UserInterface ui, Library lib) {
+        this.ui = ui;
+        this.lib = lib;
+        addMenuOptions();
+
+    }
+
 
     public void launch() throws IOException {
         printGreeting();
-        printOptions();
-        doRequest();
+        boolean keepRunning = true;
+        while (keepRunning) {
+            printOptions();
+            keepRunning = doRequest();
+        }
     }
 
     public void printOptions() {
@@ -60,32 +73,38 @@ public class Menu {
                 return MenuCode.BookList;
             case 2:
                 return MenuCode.Checkout;
+            case 4:
+                return MenuCode.Quit;
 
         }
         return MenuCode.Invalid;
     }
 
-    public String executeInput(MenuCode i) {
+    public boolean executeInput(MenuCode i) {
 
 
         switch (i) {
             case BookList:
-                return lib.getBookListString();
+                ui.printMessage(lib.getBookListString());
+                return true;
             case Checkout:
-                return "Thank you! Enjoy the book";
+                ui.printMessage("Thank you! Enjoy the book");
+                return true;
+            case Quit:
+                ui.printMessage("Goodbye!");
+                return false;
         }
-        return null;
+        ui.printMessage("That's not an option. Try again");
+        return true;
     }
 
-    public void doRequest() throws IOException {
+    public boolean doRequest() throws IOException {
         String userInput = ui.getUserInput();
 
         // TODO: assume for now the userInput is fine
 
         MenuCode menuCode = parseIntToMenuCode(Integer.parseInt(userInput));
-        String response = executeInput(menuCode);
-
-        ui.printMessage(response);
+        return executeInput(menuCode);
     }
 
 }
