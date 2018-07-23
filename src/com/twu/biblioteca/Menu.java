@@ -10,16 +10,6 @@ public class Menu {
     //TODO: REPLACE THIS WITH OPTIONS
     ArrayList<Option> menuOptions;
 
-
-
-    public enum MenuCode {
-        BookList,
-        Checkout,
-        Quit,
-        Invalid
-    }
-
-
     private final Library lib;
     private final UserInterface ui;
 
@@ -68,34 +58,13 @@ public class Menu {
         ui.printMessage("Welcome to Biblioteca!\n");
     }
 
-    public MenuCode parseIntToMenuCode(int i) {
-        switch (i) {
-            case 1:
-                return MenuCode.BookList;
-            case 2:
-                return MenuCode.Checkout;
-            case 4:
-                return MenuCode.Quit;
-
+    public boolean executeInput(String i) {
+        try {
+            int option = Integer.parseInt(i);
+            return menuOptions.get(option-1).execute();
+        } catch (NumberFormatException e) {
+            return new InvalidOption().execute();
         }
-        return MenuCode.Invalid;
-    }
-
-    public boolean executeInput(MenuCode i) {
-
-        switch (i) {
-            case BookList:
-                ui.printBookListString(lib.getBookList());
-                return true;
-            case Checkout:
-                ui.printMessage("Thank you! Enjoy the book");
-                return true;
-            case Quit:
-                ui.printMessage("Goodbye!");
-                return false;
-        }
-        ui.printMessage("That's not an option. Try again");
-        return true;
     }
 
     public boolean doRequest() throws IOException {
@@ -103,8 +72,7 @@ public class Menu {
 
         // TODO: assume for now the userInput is fine
 
-        MenuCode menuCode = parseIntToMenuCode(Integer.parseInt(userInput));
-        return executeInput(menuCode);
+        return executeInput(userInput);
     }
 
 }

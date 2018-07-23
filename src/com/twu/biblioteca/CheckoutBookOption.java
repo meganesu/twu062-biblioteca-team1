@@ -9,6 +9,7 @@ public class CheckoutBookOption extends Option {
 
     @Override
     public boolean execute() {
+        ui.printMessage("Thank you! Enjoy the book");
         return true;
     }
 

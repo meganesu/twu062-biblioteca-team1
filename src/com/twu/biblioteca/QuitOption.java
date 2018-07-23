@@ -8,6 +8,7 @@ public class QuitOption extends Option {
 
     @Override
     public boolean execute() {
+        ui.printMessage("Goodbye!");
         return false;
     }
 

@@ -32,7 +32,7 @@ public class MenuTest {
 
     @Test
     public void shouldReturnTrueAndPrintBookListWhenGivenInput1() {
-        boolean response = menu.executeInput(Menu.MenuCode.BookList);
+        boolean response = menu.executeInput("1");
         verify(printStream).println(ui.getBookListString(lib.getBookList()));
         assertTrue(response);
     }
@@ -40,7 +40,7 @@ public class MenuTest {
     @Test
     public void shouldReturnTrueAndPrintMessageIfBookWasCheckedOutSuccessfully()
     {
-        boolean response = menu.executeInput(Menu.MenuCode.Checkout);
+        boolean response = menu.executeInput("2");
         verify(printStream).println("Thank you! Enjoy the book");
         assertTrue(response);
     }
