@@ -18,6 +18,10 @@ public class UserInterface {
     }
 
     public String getUserInput() throws IOException {
-         return input.readLine();
+        return input.readLine();
+    }
+
+    public String printBookList() {
+        return "Placeholder";
     }
 }

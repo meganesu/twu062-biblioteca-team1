@@ -22,16 +22,16 @@ public class Menu {
     private final Library lib;
     private final UserInterface ui;
 
-    public Menu(PrintStream printStream, BufferedReader bufferedReader,ArrayList<Book> bookList) {
+    public Menu(PrintStream printStream, BufferedReader bufferedReader, ArrayList<Book> bookList) {
         this.lib = new Library(bookList);
-        this.ui = new UserInterface(printStream,
-                bufferedReader);
+        this.ui = new UserInterface(printStream, bufferedReader);
 
         addMenuOptions();
     }
 
     private void addMenuOptions() {
         menuOptions = new ArrayList<String>();
+
         this.menuOptions.add("List Books");
         this.menuOptions.add("Check Out Book");
         this.menuOptions.add("Return Book");
@@ -58,7 +58,7 @@ public class Menu {
     public void printOptions() {
         String s = "";
         for (int i = 0; i < menuOptions.size(); i++) {
-            s += i+1 + ") " + menuOptions.get(i) + "\n";
+            s += i + 1 + ") " + menuOptions.get(i) + "\n";
         }
         ui.printMessage(s);
     }
@@ -67,7 +67,7 @@ public class Menu {
         ui.printMessage("Welcome to Biblioteca!\n");
     }
 
-    public MenuCode parseIntToMenuCode (int i) {
+    public MenuCode parseIntToMenuCode(int i) {
         switch (i) {
             case 1:
                 return MenuCode.BookList;
@@ -82,11 +82,14 @@ public class Menu {
 
     public boolean executeInput(MenuCode i) {
 
-
         switch (i) {
             case BookList:
+<<<<<<< HEAD
                 ui.printMessage(lib.getBookListString());
                 return true;
+=======
+                return ui.printBookList();
+>>>>>>> AT/NJ refactored getBookList method to now return list
             case Checkout:
                 ui.printMessage("Thank you! Enjoy the book");
                 return true;

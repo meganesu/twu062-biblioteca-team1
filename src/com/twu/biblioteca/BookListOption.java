@@ -2,12 +2,10 @@ package com.twu.biblioteca;
 
 public class BookListOption extends Option {
 
-
     private Library lib;
     private UserInterface ui;
 
     public BookListOption(Library lib, UserInterface ui) {
-
         this.lib = lib;
         this.ui = ui;
     }
@@ -15,8 +13,7 @@ public class BookListOption extends Option {
     @Override
     public boolean execute() { //May need more clarification on purpose of this method.
         BookListOption option = new BookListOption(lib, ui);
-        option.lib.getBookListString();
-
+        option.lib.getBookList();
 
         return true;
     }

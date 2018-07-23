@@ -31,7 +31,13 @@ public class MenuTest {
     }
 
     @Test
+<<<<<<< HEAD
     public void shouldReturnTrueAndPrintBookListWhenGivenInput1() {
+=======
+    public void shouldGetBookListWhenGivenInput1() {
+
+        assertEquals(lib.getBookList(), menu.executeInput(Menu.MenuCode.BookList));
+>>>>>>> AT/NJ refactored getBookList method to now return list
 
         boolean response = menu.executeInput(Menu.MenuCode.BookList);
         verify(printStream).println(lib.getBookListString());
@@ -53,7 +59,7 @@ public class MenuTest {
 
         menu.doRequest();
 
-        verify(printStream).println(lib.getBookListString());
+        verify(printStream).println(lib.getBookList());
     }
 
 

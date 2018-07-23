@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Library {
 
@@ -19,14 +20,14 @@ public class Library {
         }
     }
 
-    public String getBookListString() {
-        // don't want to allow other parts of program to edit bookList
-        StringBuilder sb = new StringBuilder();
+    public List<Book> getBookList() {
+        List<Book> availableBooks = new ArrayList<>();
+
         for (Book book : bookList) {
             if (!book.isCheckedout())
-                sb.append(book.toString() + "\n");
+                availableBooks.add(book);
         }
-        return sb.toString();
+        return availableBooks;
     }
 
     public boolean checkout(int i) {
@@ -34,9 +35,7 @@ public class Library {
 
         if (book == null) {
             return false;
-        }
-
-        else if (!book.isCheckedout()) {
+        } else if (!book.isCheckedout()) {
             book.checkout();
             return true;
         } else {
