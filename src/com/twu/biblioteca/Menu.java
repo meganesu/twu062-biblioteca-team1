@@ -58,12 +58,26 @@ public class Menu {
         ui.printMessage("Welcome to Biblioteca!\n");
     }
 
-    public boolean executeInput(String i) {
+    public boolean executeInput(String userInput) {
+
+        if (isValidUserInput(userInput)) {
+            int option = Integer.parseInt(userInput);
+            return menuOptions.get(option - 1).execute();
+        } else {
+            return new InvalidOption(lib, ui).execute();
+        }
+    }
+
+    private boolean isValidUserInput(String userInput) {
         try {
-            int option = Integer.parseInt(i);
-            return menuOptions.get(option-1).execute();
+            int optionIndex = Integer.parseInt(userInput);
+            if (optionIndex < 1 || optionIndex > menuOptions.size()) {
+                return false;
+            } else {
+                return true;
+            }
         } catch (NumberFormatException e) {
-            return new InvalidOption().execute();
+            return false;
         }
     }
 
