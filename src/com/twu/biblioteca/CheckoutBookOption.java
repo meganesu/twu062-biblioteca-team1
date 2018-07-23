@@ -19,8 +19,13 @@ public class CheckoutBookOption extends Option {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lib.checkout(Integer.parseInt(userInput));
-        ui.printMessage("Enjoy your book!");
+        boolean successful = lib.checkout(Integer.parseInt(userInput));
+        if (successful) {
+            ui.printMessage("Thank you! Enjoy the book.");
+        }
+        else {
+            ui.printMessage("That book is not available.");
+        }
         return true;
     }
 
