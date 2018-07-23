@@ -84,12 +84,8 @@ public class Menu {
 
         switch (i) {
             case BookList:
-<<<<<<< HEAD
-                ui.printMessage(lib.getBookListString());
+                ui.printBookListString(lib.getBookList());
                 return true;
-=======
-                return ui.printBookList();
->>>>>>> AT/NJ refactored getBookList method to now return list
             case Checkout:
                 ui.printMessage("Thank you! Enjoy the book");
                 return true;

@@ -29,7 +29,7 @@ public class LibraryTest {
         ArrayList<Book> bookList = new ArrayList<Book>(Arrays.asList(new Book(0,"Catch 22","Joseph Heller","1967")));
         Library lib = new Library(new ArrayList<Book>(bookList));
 
-        ArrayList<Book>  testList = new ArrayList<>();
+        ArrayList<Book>  testList = new ArrayList<Book>();
         lib.checkout(0);
         assertEquals(testList,lib.getBookList());
     }

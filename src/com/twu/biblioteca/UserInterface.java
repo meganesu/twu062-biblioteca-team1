@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 public class UserInterface {
     private PrintStream printStream;
@@ -21,7 +22,19 @@ public class UserInterface {
         return input.readLine();
     }
 
-    public String printBookList() {
-        return "Placeholder";
+    public void printBookListString(ArrayList<Book> bookList) {
+        String bookListString = getBookListString(bookList);
+        printMessage( bookListString );
+        
     }
+
+    public String getBookListString(ArrayList<Book> bookList) {
+        StringBuilder bookListStringBuilder = new StringBuilder();
+        for (Book book: bookList) {
+            if(!book.isCheckedout())
+                bookListStringBuilder.append(book.toString() + "\n");
+        }
+        return bookListStringBuilder.toString();
+    }
+
 }

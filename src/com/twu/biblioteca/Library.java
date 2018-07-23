@@ -20,8 +20,8 @@ public class Library {
         }
     }
 
-    public List<Book> getBookList() {
-        List<Book> availableBooks = new ArrayList<>();
+    public ArrayList<Book> getBookList() {
+        ArrayList<Book> availableBooks = new ArrayList<Book>();
 
         for (Book book : bookList) {
             if (!book.isCheckedout())
