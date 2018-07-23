@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Menu {
 
     //TODO: REPLACE THIS WITH OPTIONS
-    ArrayList<String> menuOptions;
+    ArrayList<Option> menuOptions;
+
 
 
     public enum MenuCode {
@@ -30,12 +31,12 @@ public class Menu {
     }
 
     private void addMenuOptions() {
-        menuOptions = new ArrayList<String>();
+        menuOptions = new ArrayList<Option>();
 
-        this.menuOptions.add("List Books");
-        this.menuOptions.add("Check Out Book");
-        this.menuOptions.add("Return Book");
-        this.menuOptions.add("Quit");
+        this.menuOptions.add(new BookListOption(lib, ui));
+        this.menuOptions.add(new CheckoutBookOption(lib, ui));
+        this.menuOptions.add(new ReturnBookOption(lib, ui));
+        this.menuOptions.add(new QuitOption(lib, ui));
     }
 
     public Menu(UserInterface ui, Library lib) {

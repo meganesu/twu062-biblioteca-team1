@@ -18,4 +18,9 @@ public class BookListOption extends Option {
 
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "List Books";
+    }
 }

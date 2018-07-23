@@ -74,7 +74,7 @@ public class MenuTest {
 
         Menu menu = new Menu(printStream,bufferedReader,LibraryTest.testBookList);
         menu.printOptions();
-        verify(printStream).println("1) List Books\n2) Check Out Book\n3) Return Book\n4) Quit\n");
+        verify(printStream).println("1) List Books\n2) Checkout Book\n3) Return Book\n4) Quit\n");
 
     }
 
